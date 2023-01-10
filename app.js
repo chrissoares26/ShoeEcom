@@ -10,8 +10,8 @@ const flash = require("connect-flash");
 const cors = require("cors");
 const multer = require("multer");
 
-const errorController = require("./Ecom/controllers/error");
-const User = require("./Ecom/models/user");
+const errorController = require("./ShoeEcom/controllers/error");
+const User = require("./ShoeEcom/models/user");
 
 const PORT = process.env.PORT || 8080;
 
@@ -66,9 +66,9 @@ app.use(cors(corsOptions));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const adminRoutes = require("./Ecom/routes/admin");
-const shopRoutes = require("./Ecom/routes/shop");
-const authRoutes = require("./Ecom/routes/auth");
+const adminRoutes = require("./ShoeEcom/routes/admin");
+const shopRoutes = require("./ShoeEcom/routes/shop");
+const authRoutes = require("./ShoeEcom/routes/auth");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
