@@ -10,7 +10,7 @@ const flash = require("connect-flash");
 const cors = require("cors");
 const multer = require("multer");
 
-const errorController = require("./ShoeEcom/controllers/error");
+const errorController = require("controllers/error.js");
 const User = require("./ShoeEcom/models/user");
 
 const PORT = process.env.PORT || 8080;
