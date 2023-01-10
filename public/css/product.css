@@ -1,0 +1,47 @@
+.product-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+.product-item {
+  width: 20rem;
+  max-width: 95%;
+  margin: 1rem;
+  overflow: hidden;
+}
+
+.product-item img {
+  display: block;
+  transition: transform 0.4s;
+}
+
+.product-item:hover img {
+  transform: scale(1.1);
+  transform-origin: 50% 50%;
+}
+
+.product__title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.product__price {
+  text-align: center;
+  color: #052b37;
+  margin-bottom: 0.5rem;
+}
+
+.product__description {
+  text-align: center;
+}
+.product__stock__available {
+  text-align: center;
+  color: green;
+}
+
+.product__out__stock {
+  text-align: center;
+  color: red;
+}

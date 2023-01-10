@@ -1,0 +1,85 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        
+            <main>
+                <% if (prods.length > 0) { %>
+                    <button type="button" class="btn">Filter</button>
+                    <div class="grid">
+                        <% for (let product of prods) { %>
+                            <article class="card product-item">
+                                <header class="card__header">
+                                    <h1 class="product__title">
+                                        <%= product.title %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+                                </div>
+                                <div class="card__content">
+                                    <h2 class="product__price">$
+                                        <%= product.price %>
+                                    </h2>
+                                    <p class="product__description">
+                                        <%= product.description %>
+                                    </p>
+                                    <p class="product__description">
+                                        <%= product.stock %>
+                                    </p>
+                                    <div class="product__description"><label for="size">Size</label>
+                                        <select id="size" name="size" >
+                                          <% for (var i = 0; i < product.size.length; i++) { %>
+                                          <option value="<%= product.size[i] %>""><%= product.size[i] %></option>
+                                          <% } %>
+                                        </select></div>
+                                        <div class="product__description"><label for="color">Color</label>
+                                            <select id="color" name="color" >
+                                              <% for (var i = 0; i < product.color.length; i++) { %>
+                                              <option value="<%= product.color[i] %>""><%= product.color[i] %></option>
+                                              <% } %>
+                                            </select></div>
+                                    
+  
+                                    
+                                    <% if (product.stock > 0) { %>
+                                        <p class="product__stock__available">Available</p>
+
+                                    <% } else { %> 
+                                        <p class="product__out__stock">Out Of Stock</p>
+                                        <% } %>
+                                </div>
+                                <div class="card__actions">
+                                    <a href="/products/<%= product._id %>" class="btn">Details</a>
+                                    <% if (product.stock > 0) { %> 
+                                    <% if (isAuthenticated) { %>
+                                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                                    <% } %>
+                                    <% } %> 
+                                </div>
+                            </article>
+                            <% } %>
+                    </div>
+                    <section class="pagination"> 
+                        <% if (currentPage !== 1 && previousPage !== 1) { %>
+                            <a href="/products/?page=1">1</a> 
+                        <% } %>
+                        <% if (hasPreviousPage) { %> 
+                            <a href="/products/?page=<%= previousPage %>"><%= previousPage %></a>
+                        <% } %>
+                        <a href="/products/?page=<%= currentPage %>" class="active"><%= currentPage %></a>
+                        <% if (hasNextPage) { %> 
+                            <a href="/products/?page=<%= nextPage %>"><%= nextPage %></a>
+                        <% } %>
+                        <% if (lastPage !== currentPage && nextPage !== lastPage) { %>
+                            <a href="/products/?page=<%= lastPage %>" class="active"><%= lastPage %></a>
+                        <% } %>
+                    </section>
+                    <% } else { %>
+                        <h1>No Products Found!</h1>
+                        <% } %>
+            </main>
+            <%- include('../includes/end.ejs') %>
